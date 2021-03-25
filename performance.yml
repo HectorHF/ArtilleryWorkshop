@@ -1,6 +1,6 @@
 config:
   target: "https://api.todoist.com"
-  processor: "./myFunctions.js"
+  processor: "./myVariables.js"
   phases:
     - duration: 10
       arrivalRate: 10
