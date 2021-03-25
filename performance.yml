@@ -1,20 +1,14 @@
 config:
   target: "https://api.todoist.com"
+  processor: "./myFunctions.js"
   phases:
-    # - duration: {{ duration }}
-    #   arrivalRate: {{ arrivalRate }}
-    #   name: "Phase 1"
-    - duration: 1
-      arrivalRate: 1
+    - duration: 10
+      arrivalRate: 10
       name: "Phase 1"
-    # - duration: 80
-    #   arrivalRate: 8
-    #   name: "Phase 3"
   defaults:
     headers:
       Authorization: Bearer {{ $processEnvironment.TOKEN }}
       Content-type: application/json
-  processor: "./myFunctions.js"
 
 scenarios:
   - flow:
@@ -43,8 +37,8 @@ scenarios:
           url: "/rest/v1/tasks/{{ id }}"
           json:
             content: "{{ updatedContent }}"
-      # Confirm current ID and content
-      - log: "Current ID is {{ id }} and current content is {{ updatedContent }}"
+      # Confirm current ID and updated content
+      - log: "Current ID is {{ id }} and the updated content is {{ updatedContent }}"
       # Change a task status to 'complete'
       - post:
           url: "/rest/v1/tasks/{{ id }}/close"
